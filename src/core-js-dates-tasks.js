@@ -228,8 +228,20 @@ function getWeekNumberByDate(date) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  const currentDay = new Date(
+    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+  );
+
+  while (currentDay.getUTCDate() !== 13 || currentDay.getUTCDay() !== 5) {
+    currentDay.setUTCDate(currentDay.getUTCDate() + 1);
+  }
+
+  return new Date(
+    currentDay.getUTCFullYear(),
+    currentDay.getUTCMonth(),
+    currentDay.getUTCDate()
+  );
 }
 
 /**
